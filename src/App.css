@@ -1,0 +1,61 @@
+.App {
+  text-align: center;
+  padding: 50px;
+}
+.up, .down, .default {
+  position: relative;
+}
+.default:hover::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  /* background-color: #DEDAFA; */
+  background-image: url(./table/assets/default.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-left: 10px;
+  margin-top: -2px;
+  transform: rotate(180deg); 
+  -webkit-transform: rotate(180deg); 
+  -moz-transform: rotate(180deg); 
+  -ms-transform: rotate(180deg); 
+}
+.up::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: rgba(222, 218, 250, .5);
+  background-image: url(./table/assets/arrow.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-left: 10px;
+  margin-top: -2px;
+}
+.down::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #DEDAFA;
+  background-image: url(./table/assets/arrow.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-left: 10px;
+  margin-top: -2px;
+  transform: rotate(180deg); 
+  -webkit-transform: rotate(180deg); 
+  -moz-transform: rotate(180deg); 
+  -ms-transform: rotate(180deg); 
+}
+
+.row-selected {
+  > td {
+    background-color: "#efedfd",
+  }
+}
+
