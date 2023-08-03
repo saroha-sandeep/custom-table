@@ -54,8 +54,6 @@
 }
 
 .row-selected {
-  > td {
-    background-color: "#efedfd",
-  }
+    background: #efedfd;
 }
 

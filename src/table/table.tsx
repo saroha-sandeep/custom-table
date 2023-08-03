@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from "@stitches/react";
 
 import { TableHeader } from "./table-header";
@@ -17,7 +17,17 @@ const TableWrapper = styled("table", {
 });
 
 export function Table<T>({ tableData, columns }: TableProps<T>): JSX.Element {
-  const [data, handleSorting] = useSortableTable(getDefaultSorting(tableData, columns));  
+  const [data, handleSorting] = useSortableTable(getDefaultSorting(tableData, columns));
+  const [activeRowIndex, setActiveRowIndex] = useState<number[]>([]);
+  const activeRowHandler = (isActive: boolean, ind: number) => {
+    if(isActive) {
+      const newItem = [...new Set([...activeRowIndex, ind])]
+      setActiveRowIndex(newItem);
+    } else {
+      const filterItem = activeRowIndex.filter((item) => item !== ind)
+      setActiveRowIndex(filterItem)
+    }
+  }
   
   return (
     <TableWrapper>
@@ -25,7 +35,7 @@ export function Table<T>({ tableData, columns }: TableProps<T>): JSX.Element {
           <TableHeader {...{ columns, handleSorting }} />
         </thead>
         <tbody>
-          <TableRow {...{ data, columns }} />
+          <TableRow {...{ data, columns, activeRowIndex, activeRowHandler }} />
         </tbody>
     </TableWrapper>
   );

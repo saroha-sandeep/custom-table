@@ -8,9 +8,16 @@ import { IData, IColumnType } from "../types";
       accessor: "operator",
       title: "Operator",
       width: 200,
-      render: (_, { fieldType, operator }) => (
+      render: (_, { fieldType, operator }, itemIndex, activeRowHandler) => (
         <>
-         {fieldType === 'checkbox' ? <><input type="checkbox" /> {operator} </> : <><input type="radio" /> {operator} </> }
+         { fieldType === 'checkbox' ? 
+          <>
+            <input name={`row-${itemIndex}`} type="checkbox" onChange={(event) => {activeRowHandler(event.currentTarget.checked, itemIndex)}} /> {operator} 
+          </> : 
+          <>
+            <input type="radio" /> {operator} 
+          </> 
+          }
         </>
       ),
       sortable: true,

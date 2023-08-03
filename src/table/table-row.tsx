@@ -30,22 +30,34 @@ const TableRowItem = styled("tr", {
   },
 });
 
-export function TableRow<T>({ data, columns }: TableRowProps<T>): JSX.Element {
-
+export function TableRow<T>({ data, columns, activeRowIndex, activeRowHandler }: TableRowProps<T>): JSX.Element {
   return (
     <>
-      {data.map((item, itemIndex) => (
-        <TableRowItem 
-          key={`table-row-${itemIndex}`}>
-          {columns.map((column, columnIndex) => (
-            <TableRowCell
-              key={`table-row-cell-${columnIndex}`}
-              item={item}
-              column={column}
-            />
-          ))}
-        </TableRowItem>
-      ))}
+      {data.map((item, itemIndex) => {
+        let rowClasses = `table-row-${itemIndex} row-default`;
+        activeRowIndex.forEach((val) => {
+          if (itemIndex === val) {
+            rowClasses = `table-row-${itemIndex} row-selected`;
+          }
+        } )
+        return (
+          <TableRowItem 
+            key={`table-row-${itemIndex}`}
+            className={rowClasses}
+            >
+            {columns.map((column, columnIndex) => (
+              <TableRowCell
+                key={`table-row-cell-${columnIndex}`}
+                item={item}
+                column={column}
+                activeRowHandler={activeRowHandler}
+                itemIndex={itemIndex}
+                
+              />
+            ))}
+          </TableRowItem>
+        )
+      })}
     </>
   );
 }
