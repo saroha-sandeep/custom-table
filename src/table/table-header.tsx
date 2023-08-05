@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { styled } from "@stitches/react";
 
 import { TableHeaderProps } from "./types";
+import { TableLayout } from './constant';
 
 
 
@@ -21,14 +22,13 @@ const TableHeaderCell = styled("th", {
   },
 });
 
-export function TableHeader<T>({ columns, handleSorting }: TableHeaderProps<T>): JSX.Element {
+export function TableHeader<T>({ columns, handleSorting, tableLayout }: TableHeaderProps<T>): JSX.Element {
   const [sortField, setSortField] = useState("");
  const [order, setOrder] = useState("asc");
 
  const doNothing = () => {};
 
  const handleSortingChange = (accessor: string) => {
-  console.log(accessor);
   const sortOrder =
   accessor === sortField && order === "asc" ? "desc" : "asc";
   setSortField(accessor);
@@ -38,7 +38,7 @@ export function TableHeader<T>({ columns, handleSorting }: TableHeaderProps<T>):
 
   return (
     <tr>
-      {columns.map(({width, sortable, title, accessor}, columnIndex) => {
+      { tableLayout === TableLayout.Desktop && columns.map(({width, sortable, title, accessor}, columnIndex) => {
          const className = sortable
          ? sortField === accessor && order === "asc"
           ? "up"
@@ -57,6 +57,7 @@ export function TableHeader<T>({ columns, handleSorting }: TableHeaderProps<T>):
           </TableHeaderCell>
         )
       })}
+      { tableLayout === TableLayout.Mobile && (<TableHeaderCell>Contact Details</TableHeaderCell>)}
     </tr>
   );
 }

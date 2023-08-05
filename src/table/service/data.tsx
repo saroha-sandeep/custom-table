@@ -1,5 +1,17 @@
-import React from "react";
+/* eslint-disable no-lone-blocks */
+import React, { ReactNode } from "react";
 import { IData, IColumnType } from "../types";
+import { styled } from "@stitches/react";
+import { TableLayout } from "../constant";
+
+const TableCell = styled("td", {
+  padding: 12,
+  paddingBottom: "13px",
+  fontSize: 14,
+  color: "#000",
+  textAlign: "left",
+  textTransform: "capitalize"
+});
 
   
   
@@ -8,17 +20,36 @@ import { IData, IColumnType } from "../types";
       accessor: "operator",
       title: "Operator",
       width: 200,
-      render: (_, { fieldType, operator }, itemIndex, activeRowHandler) => (
+      render: (column, { fieldType, operator }, itemIndex, activeRowHandler, tableLayout) => (
         <>
+        {tableLayout === TableLayout.Desktop && (
+          <>
          { fieldType === 'checkbox' ? 
           <>
             <input name={`row-${itemIndex}`} type="checkbox" onChange={(event) => {activeRowHandler(event.currentTarget.checked, itemIndex)}} /> {operator} 
           </> : 
           <>
-            <input type="radio" /> {operator} 
+            <input type="radio" onChange={(event) => {activeRowHandler(event.currentTarget.checked, itemIndex)}} /> {operator} 
           </> 
           }
         </>
+        )}
+        { tableLayout === TableLayout.Mobile && (
+            <>
+              { fieldType === 'checkbox' ? 
+                <>
+                  <TableCell><input name={`row-${itemIndex}`} type="checkbox" onChange={(event) => {activeRowHandler(event.currentTarget.checked, itemIndex)}} /></TableCell>
+                  <TableCell> {column.title}</TableCell><TableCell>{operator}</TableCell>
+                </> : 
+                <>
+                  <TableCell><input type="radio" onChange={(event) => {activeRowHandler(event.currentTarget.checked, itemIndex)}} /></TableCell>
+                  <TableCell> {column.title} </TableCell><TableCell>{operator}</TableCell>
+                </> 
+              }
+            </>
+          )
+        }
+      </>
       ),
       sortable: true,
       sortbyOrder: "asc",
@@ -69,10 +100,36 @@ import { IData, IColumnType } from "../types";
       accessor: "operator",
       title: "Col 1",
       width: 200,
-      render: (_, { fieldType, operator }) => (
+      render: (column, { fieldType, operator }, itemIndex, activeRowHandler, tableLayout) => (
         <>
-         {fieldType === 'checkbox' ? <><input type="checkbox" /> {operator} </> : <><input type="radio" /> {operator} </> }
+        {tableLayout === TableLayout.Desktop && (
+          <>
+         { fieldType === 'checkbox' ? 
+          <>
+            <input name={`row-${itemIndex}`} type="checkbox" onChange={(event) => {activeRowHandler(event.currentTarget.checked, itemIndex)}} /> {operator} 
+          </> : 
+          <>
+            <input type="radio" onChange={(event) => {activeRowHandler(event.currentTarget.checked, itemIndex)}} /> {operator} 
+          </> 
+          }
         </>
+        )}
+        { tableLayout === TableLayout.Mobile && (
+            <>
+              { fieldType === 'checkbox' ? 
+                <>
+                  <TableCell><input name={`row-${itemIndex}`} type="checkbox" onChange={(event) => {activeRowHandler(event.currentTarget.checked, itemIndex)}} /></TableCell>
+                  <TableCell> {column.title}</TableCell><TableCell>{operator}</TableCell>
+                </> : 
+                <>
+                  <TableCell><input type="radio" onChange={(event) => {activeRowHandler(event.currentTarget.checked, itemIndex)}} /></TableCell>
+                  <TableCell> {column.title} </TableCell><TableCell>{operator}</TableCell>
+                </> 
+              }
+            </>
+          )
+        }
+      </>
       ),
       sortable: true,
       sortbyOrder: "asc",
@@ -95,25 +152,25 @@ import { IData, IColumnType } from "../types";
     {
       operator: "Row 1 Col 1",
       headsetDisplay: "Row 1 Col 2",
-      fieldType: "checkbox",
+      fieldType: "radio",
       availability: ""
     },
     {
       operator: "Row 2 Col 1",
       headsetDisplay: "Row 2 Col 2",
-      fieldType: "checkbox",
+      fieldType: "radio",
       availability: "yes",
     },
     {
       operator: "Row 3 Col 1",
       headsetDisplay: "Row 3 Col 2",
-      fieldType: "checkbox",
+      fieldType: "radio",
       availability: "yes"
     },
     {
       operator: "Row 4 Col 1",
       headsetDisplay: "Row 4 Col 2",
-      fieldType: "checkbox",
+      fieldType: "radio",
       availability: "yes",
     },
   ];

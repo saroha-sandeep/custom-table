@@ -16,10 +16,10 @@ const TableCell = styled("td", {
   textTransform: "capitalize"
 });
 
-export function TableRowCell<T>({ item, column, itemIndex, activeRowHandler }: TableRowCellProps<T>): JSX.Element {
+export function TableRowCell<T>({ item, column, itemIndex, activeRowHandler, tableLayout }: TableRowCellProps<T>): JSX.Element {
   const val = get(item, column.accessor);
   const value = !!val ? val : '-';
   return (
-    <TableCell>{column.render ? column.render(column, item, itemIndex, activeRowHandler) : value}</TableCell>
+    <TableCell>{column.render ? column.render(column, item, itemIndex, activeRowHandler, tableLayout) : value}</TableCell>
   );
 }
