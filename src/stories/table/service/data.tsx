@@ -1,5 +1,5 @@
 /* eslint-disable no-lone-blocks */
-import React, { ReactNode } from "react";
+import React from "react";
 import { IData, IColumnType } from "../types";
 import { styled } from "@stitches/react";
 import { TableLayout } from "../constant";
@@ -20,7 +20,7 @@ const TableCell = styled("td", {
       accessor: "operator",
       title: "Operator",
       width: 200,
-      render: (column, { fieldType, operator }, itemIndex, activeRowHandler, tableLayout) => (
+      render: (column: IColumnType<IData>, { fieldType, operator }: IData, itemIndex: number, activeRowHandler: (isChecked: boolean, ind: number) => void, tableLayout: TableLayout) => (
         <>
         {tableLayout === TableLayout.Desktop && (
           <>

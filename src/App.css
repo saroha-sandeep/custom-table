@@ -12,7 +12,7 @@
   height: 25px;
   border-radius: 50%;
   /* background-color: #DEDAFA; */
-  background-image: url(./table/assets/default.png);
+  background-image: url(./stories/table/assets/default.png);
   background-repeat: no-repeat;
   background-position: center center;
   margin-left: 10px;
@@ -29,7 +29,7 @@
   height: 25px;
   border-radius: 50%;
   background-color: rgba(222, 218, 250, .5);
-  background-image: url(./table/assets/arrow.png);
+  background-image: url(./stories/table/assets/arrow.png);
   background-repeat: no-repeat;
   background-position: center center;
   margin-left: 10px;
@@ -42,7 +42,7 @@
   height: 25px;
   border-radius: 50%;
   background-color: #DEDAFA;
-  background-image: url(./table/assets/arrow.png);
+  background-image: url(./stories/table/assets/arrow.png);
   background-repeat: no-repeat;
   background-position: center center;
   margin-left: 10px;

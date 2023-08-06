@@ -1,37 +1,12 @@
-export interface IColumnType<T> {
+import { TableLayout } from "./constant";
+
+export interface IColumnType<IData> {
   accessor: string;
   title: string;
   width?: number;
-  render?: (column: IColumnType<T>, item: T, itemIndex: number, activeRowHandler: (isChecked: boolean, ind: number) => void, tableLayout: string) => void;
+  render?: (column: IColumnType<IData>, item: IData, itemIndex: number, activeRowHandler: (isChecked: boolean, ind: number) => void, tableLayout: TableLayout) => void;
   sortable: boolean;
   sortbyOrder?: string;
-}
-
-export interface TableProps<T> {
-  tableData: T[];
-  columns: IColumnType<T>[];
-}
-
-export interface TableHeaderProps<T> {
-  columns: IColumnType<T>[];
-  handleSorting : Function;
-  tableLayout: string;
-}
-
-export interface TableRowCellProps<T> {
-  item: T;
-  column: IColumnType<T>;
-  itemIndex: number;
-  activeRowHandler: (isChecked: boolean, ind: number) => void;
-  tableLayout: string;
-}
-
-export interface TableRowProps<T> {
-  data: T[];
-  columns: IColumnType<T>[];
-  activeRowIndex: number[];
-  activeRowHandler: (isChecked: boolean, ind: number) => void;
-  tableLayout: string;
 }
 
 export interface IData {
@@ -40,3 +15,31 @@ export interface IData {
   fieldType: string;
   availability: string;
 }
+
+export interface TableProps<T> {
+  tableData: IData[];
+  columns: IColumnType<IData>[];
+}
+
+export interface TableHeaderProps<T> {
+  columns: IColumnType<IData>[];
+  handleSorting : Function;
+  tableLayout: TableLayout;
+}
+
+export interface TableRowCellProps<T> {
+  item: T;
+  column: IColumnType<T>;
+  itemIndex: number;
+  activeRowHandler: (isChecked: boolean, ind: number) => void;
+  tableLayout: TableLayout;
+}
+
+export interface TableRowProps<T> {
+  data: T[];
+  columns: IColumnType<T>[];
+  activeRowIndex: number[];
+  activeRowHandler: (isChecked: boolean, ind: number) => void;
+  tableLayout: TableLayout;
+}
+

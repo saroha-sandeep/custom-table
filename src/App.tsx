@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TEST_DATA, data, columns, TEST_COLUMNS } from './table';
+import { Table, TEST_DATA, data, columns, TEST_COLUMNS } from './stories/table';
 import './App.css';
 
 function App() {
